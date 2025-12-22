@@ -21,6 +21,7 @@ def generate_cleaned_data(route, cleaned_data_route, machine_noise_floor=1e-12):
     # print(df_dropped.head(10))
 
     df_dropped.to_csv(cleaned_data_route, index=False)
+    return df_dropped
 
 
 if __name__ == "__main__":
