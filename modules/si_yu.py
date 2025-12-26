@@ -1,4 +1,5 @@
 import pandas as pd
 
-def si_yu_func():
+def si_yu_func(df):
     pass
+
