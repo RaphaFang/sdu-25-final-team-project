@@ -14,7 +14,7 @@ def whole_team(cleaned_data_route, return_len: int = 10, country_index: int=0, L
     alert_package = alert_func(cleaned_data_route, return_len)
     alert_year_for_country = country_inspector(cleaned_data_route, country_index, L_or_S)
 
-    prakriti_func(route)
+    prakriti_func(cleaned_data_route)
 
     return alert_package, alert_year_for_country
 
