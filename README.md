@@ -17,7 +17,7 @@ Next, navigate into the project folder and update the list of available branches
 
 To switch to your branch, type:
 
-git checkout <branch-name>
+    git checkout <branch-name>
 
 You are now working on your own branch, so you do not have to worry about breaking the main branch.
 
