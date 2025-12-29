@@ -1,5 +1,6 @@
 from cleaning.utils import generate_cleaned_data
 from modules.si_yu import alert_func, country_inspector, si_yu_plot
+from modules.prakriti import prakriti_func
 
 row_data_route = "cleaning/life expected.csv"
 cleaned_data_route = 'life_cleaned.csv'
@@ -12,6 +13,8 @@ def whole_team(cleaned_data_route, return_len: int = 10, country_index: int=0, L
     si_yu_plot(cleaned_data_route)
     alert_package = alert_func(cleaned_data_route, return_len)
     alert_year_for_country = country_inspector(cleaned_data_route, country_index, L_or_S)
+
+    prakriti_func(route)
 
     return alert_package, alert_year_for_country
 
