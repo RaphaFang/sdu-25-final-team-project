@@ -1,7 +1,7 @@
 import pandas as pd
 
-def generate_cleaned_data(route, cleaned_data_route, machine_noise_floor=1e-12):
-    df = pd.read_csv(route)
+def generate_cleaned_data(row_data_route, cleaned_data_route, machine_noise_floor=1e-12):
+    df = pd.read_csv(row_data_route)
     
     drop_list = [3, 46, 92, 100, 107, 112, 131, 138, 156, 178]
     df_dropped = df.drop(index=drop_list)
