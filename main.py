@@ -3,6 +3,7 @@ from modules.si_yu import alert_func, country_inspector, si_yu_plot
 from modules.prakriti import prakriti_func
 from modules.sabbir import sabbir_dash_app
 from modules.nikolaos import nikolaos_func
+from modules.main import main_dash_app
 
 row_data_route = "cleaning/life expected.csv"
 cleaned_data_route = 'life_cleaned.csv'
@@ -23,9 +24,9 @@ def whole_team(cleaned_data_route, return_len: int = 10, country_index: int=0, L
 
     return alert_package, alert_year_for_country
 
-
 whole_team(cleaned_data_route, return_len=10, country_index=1, L_or_S="long")
 
-app = sabbir_dash_app(cleaned_data_route)
+
+app = main_dash_app(cleaned_data_route)
 if __name__ == "__main__":
     app.run(debug=False)
