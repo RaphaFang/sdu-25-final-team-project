@@ -22,15 +22,15 @@ def compute_anomaly_core(route):
 def anomaly_count_by_year(z_df, threshold=3):
     return z_df[z_df > threshold].notna().sum(axis=0)
 
-def anomaly_count_by_country(z_df, threshold=3):
-    return z_df[z_df > threshold].notna().sum(axis=1)
-
 def top_country_anomaly(z_df, threshold=3, top_n=20):
-    return (
-        anomaly_count_by_country(z_df, threshold)
-        .sort_values(ascending=False)
-        .head(top_n)
-    )
+    return z_df[z_df > threshold].notna().sum(axis=1).sort_values(ascending=False).head(top_n)
+
+# def top_country_anomaly(z_df, threshold=3):
+#     return (
+#         anomaly_count_by_country(z_df, threshold)
+#         .sort_values(ascending=False)
+#         .head(top_n)
+#     )
 
 def country_inspector_data(route, country_index: int = 0, anomaly_type: str = "short", threshold: float = 3):
     if anomaly_type not in ("short", "long"):

@@ -9,10 +9,15 @@ import modules.sabbir_analysis.analysis_rq1 as vis_rq1
 import modules.siyu_analysis.core_func as siyu_core
 import modules.siyu_analysis.plotly_vis as siyu_vis
 
+import modules.erik as erik
+
 
 def main_dash_app(cleaned_data_route):
     df_cleaned = pd.read_csv(cleaned_data_route)
     n_countries = len(df_cleaned)
+
+    df_cleaned_data = pd.read_csv('cleaned_data_erik.csv')
+    countries = sorted(df_cleaned_data['geo_data'].unique())
 
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -100,6 +105,21 @@ def main_dash_app(cleaned_data_route):
             ),
 
             dbc.Row(dbc.Col(dcc.Graph(id="country-inspector-plot"), width=12)),
+                    html.H4("Erik, Inspect the lifeexpectiancy apearances", className="mt-6"),
+
+            dbc.Row(
+
+                dbc.Col([
+                    html.Label("Country to select"),
+                    dcc.Dropdown(
+                        id = "The-drop-down-countrycode",
+                        options= countries,
+                        value=countries[0],
+                        clearable = False
+                    ),
+                ]),
+            ),
+            dcc.Graph(figure={}, id="Graphts_for_lifeexpecteny")
         ],
         fluid=True
     )
@@ -165,6 +185,16 @@ def main_dash_app(cleaned_data_route):
         )
 
         # label = f"Current: {country_name} (index={country_index}) | anomalies: {len(anomaly_years)}"
+        return fig
+
+    @app.callback(
+        Output(component_id="Graphts_for_lifeexpecteny", component_property='figure'),
+        Input(component_id="The-drop-down-countrycode", component_property='value')
+    )
+    def erik_graph(country_code):
+        df_plot = erik.modeling(df_cleaned_data,country_code)
+        fig = erik.ploting(df_plot, country_code)
+        
         return fig
 
     return app
